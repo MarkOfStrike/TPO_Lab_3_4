@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticVersion", "SemanticVersion\SemanticVersion.csproj", "{2D864130-2ECB-4DC2-A8FD-B1AD39F0F5F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemVerParsingTests", "SemVerParsingTests\SemVerParsingTests.csproj", "{035A9084-8B4B-4223-A4C2-387ED1EB5959}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D864130-2ECB-4DC2-A8FD-B1AD39F0F5F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D864130-2ECB-4DC2-A8FD-B1AD39F0F5F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D864130-2ECB-4DC2-A8FD-B1AD39F0F5F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D864130-2ECB-4DC2-A8FD-B1AD39F0F5F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{035A9084-8B4B-4223-A4C2-387ED1EB5959}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{035A9084-8B4B-4223-A4C2-387ED1EB5959}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{035A9084-8B4B-4223-A4C2-387ED1EB5959}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{035A9084-8B4B-4223-A4C2-387ED1EB5959}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E0CDC3AD-833B-43F6-A4BA-F81E0BF2343E}
+	EndGlobalSection
+EndGlobal
