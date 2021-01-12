@@ -176,7 +176,7 @@ namespace SemVerParsingTests
 
 
         [Test]
-        public void TestContainsRange()
+        public void TestContains()
         {
             var range = new SemVersionRange(new SemVersion(0));
 
@@ -198,5 +198,41 @@ namespace SemVerParsingTests
             Assert.IsFalse(range.Contains(SemVersion.Parse("4.0.0")));
 
         }
+
+        [Test]
+        public void TestContainsRange()
+        {
+            var range = new SemVersionRange(new SemVersion(0));
+
+            Assert.IsTrue(range.Contains(new SemVersionRange(new SemVersion(1), new SemVersion(2))));
+            Assert.IsTrue(range.Contains(new SemVersionRange(new SemVersion(0,4,6), new SemVersion(0,5,6))));
+            Assert.IsTrue(range.Contains(new SemVersionRange(new SemVersion(1,7,9), new SemVersion(2))));
+            Assert.IsTrue(range.Contains(new SemVersionRange(new SemVersion(2), new SemVersion(3))));
+
+            range = new SemVersionRange(new SemVersion(0, 4, 7), new SemVersion(1, 3, 6));
+
+            Assert.IsTrue(range.Contains(new SemVersionRange(new SemVersion(0, 5, 1), new SemVersion(1))));
+            Assert.IsTrue(range.Contains(new SemVersionRange(new SemVersion(0, 9, 3), new SemVersion(1,3,5))));
+            Assert.IsTrue(range.Contains(new SemVersionRange(new SemVersion(0, 4, 8), new SemVersion(1,1,1))));
+
+            Assert.IsFalse(range.Contains(new SemVersionRange(new SemVersion(0, 3, 8), new SemVersion(1,1,1))));
+            Assert.IsFalse(range.Contains(new SemVersionRange(new SemVersion(0, 4, 8), new SemVersion(2))));
+            Assert.IsFalse(range.Contains(new SemVersionRange(new SemVersion(1, 3, 6), new SemVersion(1,7,8))));
+
+        }
+
+        [Test]
+        public void TestXRange()
+        {
+            Assert.AreEqual(new SemVersion(0), SemVersion.Parse("*"));
+            Assert.AreEqual(new SemVersion(0), SemVersion.Parse("x"));
+            Assert.AreEqual(new SemVersion(0), SemVersion.Parse("X"));
+            Assert.AreEqual(new SemVersion(0), SemVersion.Parse(""));
+
+            Assert.AreEqual(new SemVersion(1, 2, 0), SemVersion.Parse("1.2.*"));
+            Assert.AreEqual(new SemVersion(2), SemVersion.Parse("2.x"));
+
+        }
+
     }
 }
