@@ -38,9 +38,9 @@ namespace SemanticVersion
 
 
         public static readonly Regex ParseEx =
-            new Regex(@"(?<major>\d+)" +
-                      @"(?>\.(?<minor>\d+))?" +
-                      @"(?>\.(?<patch>\d+))?" +
+            new Regex(@"(?<major>(\d|\*?|x?|X?|^\s?$)+)" +
+                      @"(?>\.(?<minor>(\d|\*?|x?|X?|^\s?$)+))?" +
+                      @"(?>\.(?<patch>(\d|\*?|x?|X?|^\s?$)+))?" +
                       @"(?>\-(?<pre>[0-9A-Za-z\-\.]+))?" +
                       @"(?>\+(?<build>[0-9A-Za-z\-\.]+))?",
                 RegexOptions.CultureInvariant | RegexOptions.Compiled | RegexOptions.ExplicitCapture,
@@ -68,19 +68,21 @@ namespace SemanticVersion
             if (!match.Success)
                 throw new ArgumentException($"Invalid version '{version}'.", nameof(version));
 
-            var major = int.Parse(match.Groups["major"].Value, CultureInfo.InvariantCulture);
+            int.TryParse(match.Groups["major"].Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out int major);
+
+            
 
             var minorMatch = match.Groups["minor"];
             int minor = 0;
             if (minorMatch.Success)
-                minor = int.Parse(minorMatch.Value, CultureInfo.InvariantCulture);
+                int.TryParse(minorMatch.Value,NumberStyles.Integer, CultureInfo.InvariantCulture, out minor);
             else if (strict)
                 throw new InvalidOperationException("Invalid version (no minor version given in strict mode)");
 
             var patchMatch = match.Groups["patch"];
             int patch = 0;
             if (patchMatch.Success)
-                patch = int.Parse(patchMatch.Value, CultureInfo.InvariantCulture);
+                int.TryParse(patchMatch.Value,NumberStyles.Integer, CultureInfo.InvariantCulture, out patch);
             else if (strict)
                 throw new InvalidOperationException("Invalid version (no patch version given in strict mode)");
 
