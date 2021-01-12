@@ -45,7 +45,8 @@ namespace SemanticVersion
             if (!match.Success)
                 throw new ArgumentException($"Invalid range '{source}'.", nameof(source));
 
-            var fromRange = SemVersion.Parse(match.Groups["from"].Value, true);
+
+            var fromRange = SemVersion.Parse(match.Groups["from"].Value);
             var toRange = SetSemVersionTo(fromRange);
 
             return new SemVersionRange(fromRange, toRange);

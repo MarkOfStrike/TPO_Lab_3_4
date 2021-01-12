@@ -224,6 +224,23 @@ namespace SemVerParsingTests
         [Test]
         public void TestXRange()
         {
+
+            Assert.AreEqual("[0.0.0]", SemVersionRange.Parse("*").ToString());
+            Assert.AreEqual("[2.0.0-3.0.0]", SemVersionRange.Parse("2.*").ToString());
+            Assert.AreEqual("[1.4.0-1.5.0]", SemVersionRange.Parse("1.4.*").ToString());
+
+            Assert.AreEqual("[0.0.0]", SemVersionRange.Parse("").ToString());
+            Assert.AreEqual("[2.0.0-3.0.0]", SemVersionRange.Parse("2.").ToString());
+            Assert.AreEqual("[1.4.0-1.5.0]", SemVersionRange.Parse("1.4.").ToString());
+
+            Assert.AreEqual("[0.0.0]", SemVersionRange.Parse("x").ToString());
+            Assert.AreEqual("[2.0.0-3.0.0]", SemVersionRange.Parse("2.x").ToString());
+            Assert.AreEqual("[1.4.0-1.5.0]", SemVersionRange.Parse("1.4.x").ToString());
+
+            Assert.AreEqual("[0.0.0]", SemVersionRange.Parse("X").ToString());
+            Assert.AreEqual("[2.0.0-3.0.0]", SemVersionRange.Parse("2.X").ToString());
+            Assert.AreEqual("[1.4.0-1.5.0]", SemVersionRange.Parse("1.4.X").ToString());
+
             Assert.AreEqual(new SemVersion(0), SemVersion.Parse("*"));
             Assert.AreEqual(new SemVersion(0), SemVersion.Parse("x"));
             Assert.AreEqual(new SemVersion(0), SemVersion.Parse("X"));
